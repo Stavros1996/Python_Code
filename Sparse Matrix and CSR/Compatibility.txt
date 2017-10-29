@@ -4,7 +4,7 @@ Stavros Gkounis
 |Compatibility Details|:
 
 A) Python Version : THE PYTHON CODE IS WRITTEN IN PYTHON 3.5.2 VERSION.
-B) Operating System : Linux Ubuntu 16.04.3 LTS with GNOME graphical environment
+B) Operating System : Linux Ubuntu
 C) Python IDE : PyCharm
 D) Editor : Atom
 
