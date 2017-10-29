@@ -3,7 +3,7 @@ Caesar python Module is the implemation of the caesar cipher (cryptalgorithm).
 """
 
 """
-@Author : Stavros Gkounis (it15178)
+@Author : Stavros Gkounis
 @Date : 10/11/17
 @Project : Caesar Cipher implementation.
 """
