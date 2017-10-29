@@ -3,7 +3,7 @@ This module calculate with different ways the Greatest Common Divisor (gcd).
 """
 
 """
-@Author: Stavros Gkounis (it15178)
+@Author: Stavros Gkounis
 @Date: 17/10/17
 @Project: gcd [Discrete Mathematics]
 """
