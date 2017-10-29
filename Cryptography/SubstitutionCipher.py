@@ -3,7 +3,7 @@ This Python module implements the substitution cipher (cryptalgorithm).
 """
 
 """
-@Author : Stavros Gkounis (it15178)
+@Author : Stavros Gkounis
 @Date : 10/11/17
 @Project : Substitution Cipher implementation.
 """
