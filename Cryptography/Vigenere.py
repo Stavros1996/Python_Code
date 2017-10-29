@@ -3,10 +3,10 @@ This module is the implementation of the vigenere cipher.
 """
 
 """
-@Author: Stavros Gkounis (it15178)
+@Author: Stavros Gkounis
 @Date : 26/10/17
 @Project: Vigenere cipher
-@University Exercise in Network and Internet Application Security
+@Network and Internet Application Security exercise
 """
 
 """
