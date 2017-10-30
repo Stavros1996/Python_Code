@@ -91,7 +91,7 @@ def  xgcdIterative(a,b):
         nextT = t0 - (t1 * q)
         r0, r1, s0, s1, t0, t1 = r1, r2, s1, nextS, t1, nextT  #  this line of code will be understandable, if we observe the formulas of the theorem 2.
         d = r0
-    return tuple([d,s0,t0])
+    return d,s0,t0
 
 def xgcdRecercive(a,b):
     """
