@@ -3,10 +3,10 @@ This module is the implementation of the vigenere cipher.
 """
 
 """
-@Author: Stavros Gkounis
+@Author: Stavros Gkounis (it15178)
 @Date : 26/10/17
 @Project: Vigenere cipher
-@Network and Internet Application Security exercise
+@Thesis: Classical cryptalgorithms, Cryptanalysis and Information Case Study (Network and Internet Applications Security)
 """
 
 """
@@ -80,7 +80,6 @@ def Ascii2Zset(plaintext):
 def Zset2Ascii(ciphertext):
     return "".join([chr(x+65) for x in ciphertext])
 
-
 def tabulaRecta(message,key):
     #Begin of precomputed variables
     plainText = Ascii2Zset(message)
@@ -100,14 +99,11 @@ def tabulaRecta(message,key):
 def plaintextInAscii(ciphertext, key):
     ciphertextList = Ascii2Zset(ciphertext)
     keyAscii = Ascii2Zset(key)
-
+ 
     keyLength = len(keyAscii)
     cipherLength = len(ciphertext)
+    return ([((ciphertextList[x] - keyAscii[x % keyLength]) % 26) for x in range(len(ciphertext))])
 
-    if((keyLength == cipherLength) or (keyLength > cipherLength)):
-        return ([((ciphertextList[x] - keyAscii[x]) % 26) for x in range(len(ciphertext))])
-    elif(keyLength < cipherLength):
-        return ([((ciphertextList[x] - keyAscii[x % keyLength]) % 26) for x in range(len(ciphertext))])
 
 def decryption(ciphertext,key):
     ciphertextList = plaintextInAscii(ciphertext,key)
@@ -117,8 +113,9 @@ def decryption(ciphertext,key):
 
 def mappingSortedOrder(key):
     if(isinstance(key,str)):
-        sortedOrder = [x+1 for x in range(len(key))] 
+        sortedOrder = [x+1 for x in range(len(key))]
         return "".join([chr(x+65) for x in sortedOrder]), "".join(sorted(list(key)))
+
 
 def sortedTabulaRecta(message,key):
     #Begin of precomputed variables
@@ -137,11 +134,8 @@ def sortedTabulaRecta(message,key):
     aux = [mapping[sortedList.index(key[x])] for x in range(len(key))]
     newKey = Ascii2Zset("".join(aux))
 
+    return [((newKey[x % len(newKey)] + plainText[x]) % 26) for x in range(len(plainText))]
 
-    if((keyLength == messageLength) or (keyLength > messageLength)):
-        return [((newKey[x] + plainText[x]) % 26) for x in range(len(plainText))]
-    elif(keyLength < messageLength):
-        return [((newKey[x % len(newKey)] + plainText[x]) % 26) for x in range(len(plainText))]
 
 def ciphertextInAscii(ciphertext,key):
     ciphertextList = Ascii2Zset(ciphertext)
@@ -155,11 +149,7 @@ def ciphertextInAscii(ciphertext,key):
     aux = [mapping[sortedList.index(key[x])] for x in range(len(key))]
     newKey = Ascii2Zset("".join(aux))
 
-    if((keyLength == cipherLength) or (keyLength > cipherLength)):
-        return [((ciphertextList[x] - newKey[x]) % 26) for x in range(len(ciphertext))]
-    elif(keyLength < cipherLength):
-        return [((ciphertextList[x] - newKey[x % len(newKey)]) % 26) for x in range(len(ciphertext))]
-
+    return [((ciphertextList[x] - newKey[x % len(newKey)]) % 26) for x in range(len(ciphertext))]
 
 def sortedDecryption(ciphertext, key):
     ciphertextList = ciphertextInAscii(ciphertext,key)
@@ -175,11 +165,30 @@ def sortedEncryption(message,key):
     cipherList = sortedTabulaRecta(message,key)
     return Zset2Ascii(cipherList)
 
+def BruteForceVigenere(fileN):
+    ciphertext1 = 'VIEOEGMOCIGOHHJGBALOTMRJBHUMPXRJKQAMMBZAZKLMROROMQRAAUMNFWUGKXRNGKKUCTXKXJLXGNXAFWQCHLBIAJLJVVQSHLVBVSXQZBUIKSGBBUEUELFZNXPKNXXZLTYEMBVIIGBFRJYKUIFSFGGXUWAUMZFZTKMNYIGNXVZOTKLNSWBQBMZVGNXCEBRXGYK'
+    
+    inF = open(fileN)
+    textList = inF.read()
+    possibleKeys = textList.split('\n')
+    
+    for i in possibleKeys:
+        print("Key: {}     PlainText: {}".format(i,decryption(ciphertext1,i)))
+        
+    inF.close()
+
 
 if(__name__ == "__main__"):
-    print(encryption("GKOUNISS","SORV"))  # my last name using a letter from my Name.
-    print(sortedEncryption("GKOUNISS","SORV"))
+    print(encryption("GKOUNISS","SORV"))
     print(decryption("YYFPFWJN","SORV"))
+    print('\n')
+    
+    print(sortedEncryption("GKOUNISS","SORV"))
     print(sortedDecryption("JLQYQJUW", "SORV"))
+    print('\n')
+
+    BruteForceVigenere('Alist.txt')
+    print('\n')
+
 else:
     print("The module is imported successfully!")
